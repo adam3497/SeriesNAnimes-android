@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Series &amp; Animes</string>
+
+    <!--Facebook login-->
+    <string name="facebook_app_id">1951740124900493</string>
+    <string name="fb_login_protocol_scheme">fb1951740124900493</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!--Login Activity Strings-->
+    <string name="login_image_description">Imagen representativa para el inicio de sesión</string>
+    <string name="login_etx_username">Nombre de usuario</string>
+    <string name="login_etx_password">Contraseña</string>
+    <string name="login_button">Iniciar sesión</string>
+    <string name="login_ibutton_facebook">Botón de inicio de sesión con Facebook</string>
+    <string name="login_ibutton_google">Botón de inicio de sesión con la cuenta de Google</string>
+    <string name="login_button_register">Crear cuenta</string>
+    <string name="login_txt_or">O ingresar con: </string>
+    <string name="login_txt_copyright">Series &amp; Animes \u00A9 2018 \n Todos los derechos reservados</string>
+    <string name="title_activity_login">Iniciar sesión</string>
+    <string name="login_not_found_user">Usuario no registrado</string>
+    <string name="login_validate_user_msg">Validando usuario…</string>
+    <string name="login_found_user">Usuario válido</string>
+    <string name="login_wrong_password">Contraseña incorrecta</string>
+
+    <!--Register Activity Strings-->
+    <string name="title_activity_register">Registro</string>
+    <string name="register_image_description">Imagen representativa para la actividad de registro</string>
+    <string name="register_etx_user_name_hint">Nombre de usuario</string>
+    <string name="register_etx_email_hint">Correo electrónico</string>
+    <string name="register_etx_password_hint">Contraseña</string>
+    <string name="register_etx_password_validate_hint">Vuelva a escribir la contraseña</string>
+    <string name="register_button">Crear cuenta</string>
+    <string name="register_not_equals_passwords">Las contraseñas no coinciden, vuelva a intentarlo</string>
+    <string name="register_msg_while_create_account">Creando cuenta…</string>
+    <string name="register_already_exist_username">Nombre de usuario ya existe</string>
+    <string name="register_created_user_successfully">Usuario creado con éxito</string>
+    <string name="register_created_user_unsuccessfully">No se pudo crear el usuario</string>
+
+    <string name="signed_with">Inició sesión con: {0}</string>
+
+    <!--Navigation Drawer strings-->
+    <string name="nav_opt_log_out">Cerrar sesión</string>
+
+    <!--MainActivity Strings-->
+    <string name="main_loggin_out_msg">Cerrando sesión de {0}</string>
+    <string name="main_logged_out_successfuly">Sesión cerrada con éxito</string>
+</resources>
