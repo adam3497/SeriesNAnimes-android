@@ -27,6 +27,8 @@
     <string name="login_validate_user_msg">Validando usuario…</string>
     <string name="login_found_user">Usuario válido</string>
     <string name="login_wrong_password">Contraseña incorrecta</string>
+    <string name="facebook_login_error">Se produjo un error al iniciar con Facebook</string>
+    <string name="facebook_login_canceled">Inicio cancelado por el usuario</string>
 
     <!--Register Activity Strings-->
     <string name="title_activity_register">Registro</string>

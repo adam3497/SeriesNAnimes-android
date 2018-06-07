@@ -4,9 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,12 +11,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.altarosprojects.seriesanimes.db.DatabaseModel;
@@ -43,20 +38,15 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 101;
     private static final String TAG = "LoginActivty";
     private Button btnCreateAccount, btnLogin;
-    private SignInButton ibtnGoogle;
-    private LoginButton ibtnFacebook;
+    private SignInButton btnGoogleLogin;
+    private LoginButton btnFacebookLogin;
     private EditText etxUsername, etxPassword;
 
     private DatabaseUsersHelper usersHelper;
@@ -94,41 +84,24 @@ public class LoginActivity extends AppCompatActivity {
             // Check for existing Google Sign In account, if the user is already signed in
             // the GoogleSignInAccount will be non-null.
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-            updateUI(account);
+            googleSignInManager(account);
         }
     }
 
-    private void loggedFacebook() {
-        Toast.makeText(getApplicationContext(), "Inicio de sesión éxito con la cuenta de Facebook", Toast.LENGTH_SHORT).show();
-        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-        mainIntent.putExtra("accountSignedFacebook", true);
-        mainIntent.putExtra("accountSignedGoogle", false);
-        startActivity(mainIntent);
-        finish();
-    }
-
-    private void updateUI(GoogleSignInAccount account) {
-        if(account != null){
-            Toast.makeText(getApplicationContext(), "Inicio de sesión éxito con la cuenta de Google", Toast.LENGTH_SHORT).show();
-            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-            mainIntent.putExtra("accountSignedGoogle", true);
-            mainIntent.putExtra("accountSignedFacebook", false);
-            startActivity(mainIntent);
-            finish();
-        }
-    }
-
+    /**
+     * This method initialize all the views in the Login Screen, and put the corresponding listener
+     */
     private void setViews() {
         btnCreateAccount = (Button) findViewById(R.id.btn_login_create_account);
         btnLogin = (Button) findViewById(R.id.btn_login);
         etxUsername = (EditText) findViewById(R.id.etx_username_login);
         etxPassword = (EditText) findViewById(R.id.etx_password_login);
-        ibtnFacebook = (LoginButton) findViewById(R.id.ibtn_facebook_login);
-        ibtnGoogle = (SignInButton) findViewById(R.id.ibtn_google_login);
+        btnFacebookLogin = (LoginButton) findViewById(R.id.ibtn_facebook_login);
+        btnGoogleLogin = (SignInButton) findViewById(R.id.ibtn_google_login);
 
         //action for login google button
-        ibtnGoogle.setSize(SignInButton.SIZE_STANDARD);
-        ibtnGoogle.setOnClickListener(new View.OnClickListener() {
+        btnGoogleLogin.setSize(SignInButton.SIZE_STANDARD);
+        btnGoogleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -137,13 +110,11 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         //action for login facebook button
-        ibtnFacebook.setReadPermissions(Arrays.asList("public_profile", "email"));
+        btnFacebookLogin.setReadPermissions(Arrays.asList("public_profile", "email"));
         //callback registration
-        ibtnFacebook.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        btnFacebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Snackbar.make(ibtnFacebook, "Inicio éxitoso", Snackbar.LENGTH_SHORT).show();
-
                 //app code
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
                     @Override
@@ -195,12 +166,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-                Snackbar.make(ibtnFacebook, "Inicio cancelado", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(btnFacebookLogin, getResources().getString(R.string.facebook_login_canceled), Snackbar.LENGTH_SHORT).show();
             }
 
             @Override
             public void onError(FacebookException error) {
-                Snackbar.make(ibtnFacebook, "Se produjo un error al iniciar con Facebook", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(btnFacebookLogin, getResources().getString(R.string.facebook_login_error), Snackbar.LENGTH_SHORT).show();
             }
         });
 
@@ -208,6 +179,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setBackgroundColor(getResources().getColor(R.color.colorButtonDisable));
         btnLogin.setTextColor(getResources().getColor(R.color.colorButtonTextDisable));
 
+        //Every EditText has a text changed listener, this is for activating the login button, if both field are fill the login button
+        //is activated
         etxUsername.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) { }
@@ -248,6 +221,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        //pass to the Register Activity
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -300,6 +274,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This method validate the user authentication from an App Account
+     * @param username
+     * @param email
+     * @param password this parameter is valid against the password given by the user
+     * @param progressDialog the current dialog shown
+     *
+     * If both passwords are different, the user is notified with a message
+     */
     private void validateUser(String username, String email, String password, ProgressDialog progressDialog) {
         if(etxPassword.getText().toString().equals(password)){
             progressDialog.dismiss();
@@ -318,6 +301,17 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method start the main activity when a Facebook Login is success
+     */
+    private void loggedFacebook() {
+        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+        mainIntent.putExtra("accountSignedFacebook", true);
+        mainIntent.putExtra("accountSignedGoogle", false);
+        startActivity(mainIntent);
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
@@ -333,18 +327,36 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    /**
+     * This method manage the result of a previews authentication
+     * @param task is the result of a previews sign in operation
+     */
     private void handleSignInResult(Task<GoogleSignInAccount> task) {
         try {
             GoogleSignInAccount account = task.getResult(ApiException.class);
 
             // Signed in successfully, show authenticated UI.
-            updateUI(account);
+            googleSignInManager(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
+            googleSignInManager(null);
         }
 
+    }
+
+    /**
+     * This method manage the Google Sign In
+     * @param account if != null, means that the sign in is success
+     */
+    private void googleSignInManager(GoogleSignInAccount account) {
+        if(account != null){
+            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+            mainIntent.putExtra("accountSignedGoogle", true);
+            mainIntent.putExtra("accountSignedFacebook", false);
+            startActivity(mainIntent);
+            finish();
+        }
     }
 }
