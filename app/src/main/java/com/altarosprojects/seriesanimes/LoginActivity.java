@@ -307,7 +307,6 @@ public class LoginActivity extends AppCompatActivity {
     private void validateUser(String username, String email, String password, ProgressDialog progressDialog) {
         if(etxPassword.getText().toString().equals(password)){
             progressDialog.dismiss();
-            Toast.makeText(this, getResources().getString(R.string.login_found_user), Toast.LENGTH_SHORT).show();
             Set<String> info = new HashSet<>();
             info.add(username);
             info.add(email);

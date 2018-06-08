@@ -43,9 +43,8 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView txtUsername, txtEmail, txtPassword, txtSignedWith;
-    Boolean signedFace;
-    Boolean signedGoogle;
+    private Boolean signedFace;
+    private Boolean signedGoogle;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager callbackManager;
     private SharedPreferences sharedPreferences;
@@ -77,12 +76,18 @@ public class MainActivity extends AppCompatActivity
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        txtUsername = (TextView) findViewById(R.id.txt_username);
-        txtEmail = (TextView) findViewById(R.id.txt_email);
-        txtPassword = (TextView) findViewById(R.id.txt_password);
-        txtSignedWith = (TextView) findViewById(R.id.txt_signed_with);
+        obtainExtras();
 
+
+    }
+
+    /**
+     * This method obtain the extra data from intent launch in LoginActivity to validate which account is in used
+     */
+    private void obtainExtras() {
         Bundle extras = getIntent().getExtras();
+
+        TextView infoLoggin = (TextView) findViewById(R.id.txt_card_info);
 
         if(extras != null){
             signedFace = extras.getBoolean("accountSignedFacebook", false);
@@ -95,10 +100,7 @@ public class MainActivity extends AppCompatActivity
                 String email = prefs.getString("facebookEmail", "not found");
                 String userId = prefs.getString("facebookUserId", "not found");
 
-                txtUsername.setText(username);
-                txtEmail.setText(email);
-                txtPassword.setText(userId);
-                txtSignedWith.setText(getResources().getString(R.string.signed_with).replace("{0}", "Facebook Account"));
+                infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Facebook"));
             }
             else if(signedGoogle){
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
@@ -110,12 +112,8 @@ public class MainActivity extends AppCompatActivity
                     String personId = acct.getId();
                     Uri personPhoto = acct.getPhotoUrl();
 
-                    txtUsername.setText(personName + ", " + personGivenName);
-                    txtEmail.setText(personEmail);
-                    txtPassword.setText(personId);
-                    txtSignedWith.setText(getResources().getString(R.string.signed_with).replace("{0}", "Gogle Account"));
+                    infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Google"));
                 }
-
             }
             else{
                 //info where info[0] = username, info[1] = email, info[2] = password
@@ -123,11 +121,8 @@ public class MainActivity extends AppCompatActivity
                 info = sharedPreferences.getStringSet("appAccountInfo", null);
                 if(info != null){
                     ArrayList<String> infoArray = new ArrayList<>(info);
+                    infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "App Account"));
 
-                    txtUsername.setText(infoArray.get(0));
-                    txtEmail.setText(infoArray.get(1));
-                    txtPassword.setText(infoArray.get(2));
-                    txtSignedWith.setText(getResources().getString(R.string.signed_with).replace("{0}", "Application Account"));
                 }
                 else{
                     Toast.makeText(this, getResources().getString(R.string.app_account_error), Toast.LENGTH_SHORT).show();
@@ -239,7 +234,7 @@ public class MainActivity extends AppCompatActivity
             });
         }
         else{
-            progressDialog.setMessage(getResources().getString(R.string.main_loggin_out_msg).replace("{0}", txtUsername.getText().toString()));
+            progressDialog.setMessage(getResources().getString(R.string.main_loggin_out_msg).replace("{0}", "App Account"));
             progressDialog.show();
             sharedPreferences.edit().putBoolean("accountLoggedIn", false).apply();
             sharedPreferences.edit().putStringSet("appAccountInfo", null).apply();
