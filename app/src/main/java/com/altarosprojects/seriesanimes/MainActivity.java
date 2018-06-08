@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -35,6 +36,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -43,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     Boolean signedGoogle;
     private GoogleSignInClient mGoogleSignInClient;
     private CallbackManager callbackManager;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         callbackManager = CallbackManager.Factory.create();
 
@@ -110,14 +118,21 @@ public class MainActivity extends AppCompatActivity
 
             }
             else{
-                //info[] where info[0] = username, info[1] = email, info[2] = password
-                String[] info = extras.getStringArray("normalSigned");
+                //info where info[0] = username, info[1] = email, info[2] = password
+                Set<String> info = new HashSet<>();
+                info = sharedPreferences.getStringSet("appAccountInfo", null);
+                if(info != null){
+                    ArrayList<String> infoArray = new ArrayList<>(info);
 
-                assert info != null;
-                txtUsername.setText(info[0]);
-                txtEmail.setText(info[1]);
-                txtPassword.setText(info[2]);
-                txtSignedWith.setText(getResources().getString(R.string.signed_with).replace("{0}", "Application Account"));
+                    txtUsername.setText(infoArray.get(0));
+                    txtEmail.setText(infoArray.get(1));
+                    txtPassword.setText(infoArray.get(2));
+                    txtSignedWith.setText(getResources().getString(R.string.signed_with).replace("{0}", "Application Account"));
+                }
+                else{
+                    Toast.makeText(this, getResources().getString(R.string.app_account_error), Toast.LENGTH_SHORT).show();
+                    finish();
+                }
             }
         }
     }
@@ -224,7 +239,12 @@ public class MainActivity extends AppCompatActivity
             });
         }
         else{
-
+            progressDialog.setMessage(getResources().getString(R.string.main_loggin_out_msg).replace("{0}", txtUsername.getText().toString()));
+            progressDialog.show();
+            sharedPreferences.edit().putBoolean("accountLoggedIn", false).apply();
+            sharedPreferences.edit().putStringSet("appAccountInfo", null).apply();
+            startActivity(loginRequestIntent);
+            finish();
         }
     }
 }

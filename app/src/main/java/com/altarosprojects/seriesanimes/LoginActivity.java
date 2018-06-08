@@ -1,5 +1,6 @@
 package com.altarosprojects.seriesanimes;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,10 +8,12 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.ArraySet;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +41,11 @@ import com.google.android.gms.tasks.Task;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,10 +60,14 @@ public class LoginActivity extends AppCompatActivity {
     private CallbackManager callbackManager;
     private GoogleSignInClient mGoogleSignInClient;
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -75,10 +86,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+        boolean isFacebookLoggedIn = accessToken != null && !accessToken.isExpired();
+        boolean isAppAccountLoggedIn = sharedPreferences.getBoolean("accountLoggedIn", false);
 
-        if(isLoggedIn){
+        if(isFacebookLoggedIn){
             loggedFacebook();
+        }
+        else if(isAppAccountLoggedIn){
+            Set<String> info = new HashSet<>();
+            info = sharedPreferences.getStringSet("appAccountInfo", null);
+            if(info != null){
+                loggedAppAccount();
+            }
+            else{
+                Toast.makeText(this, getResources().getString(R.string.app_account_error), Toast.LENGTH_SHORT).show();
+            }
         }
         else{
             // Check for existing Google Sign In account, if the user is already signed in
@@ -233,6 +255,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //listener for Login Button
         btnLogin.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("Recycle")
             @Override
             public void onClick(View view) {
 
@@ -276,8 +299,6 @@ public class LoginActivity extends AppCompatActivity {
 
     /**
      * This method validate the user authentication from an App Account
-     * @param username
-     * @param email
      * @param password this parameter is valid against the password given by the user
      * @param progressDialog the current dialog shown
      *
@@ -287,18 +308,30 @@ public class LoginActivity extends AppCompatActivity {
         if(etxPassword.getText().toString().equals(password)){
             progressDialog.dismiss();
             Toast.makeText(this, getResources().getString(R.string.login_found_user), Toast.LENGTH_SHORT).show();
-            Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
-            String[] info = {username, email, password};
-            mainIntent.putExtra("accountSignedGoogle", false);
-            mainIntent.putExtra("accountSignedFacebook", false);
-            mainIntent.putExtra("normalSigned", info);
-            startActivity(mainIntent);
+            Set<String> info = new HashSet<>();
+            info.add(username);
+            info.add(email);
+            info.add(password);
+            sharedPreferences.edit().putStringSet("appAccountInfo", info).apply();
+            loggedAppAccount();
         }
         else{
             progressDialog.dismiss();
             Toast.makeText(this, getResources().getString(R.string.login_wrong_password),
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * If the authentication is valid, then proceed to launch the main activity with the app account data
+     *
+     */
+    private void loggedAppAccount() {
+        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+        mainIntent.putExtra("accountSignedGoogle", false);
+        mainIntent.putExtra("accountSignedFacebook", false);
+        sharedPreferences.edit().putBoolean("accountLoggedIn", true).apply();
+        startActivity(mainIntent);
     }
 
     /**

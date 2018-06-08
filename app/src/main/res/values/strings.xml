@@ -29,6 +29,7 @@
     <string name="login_wrong_password">Contraseña incorrecta</string>
     <string name="facebook_login_error">Se produjo un error al iniciar con Facebook</string>
     <string name="facebook_login_canceled">Inicio cancelado por el usuario</string>
+    <string name="app_account_error">Lo sentimos, ha ocurrido un problema iniciando sesión</string>
 
     <!--Register Activity Strings-->
     <string name="title_activity_register">Registro</string>
