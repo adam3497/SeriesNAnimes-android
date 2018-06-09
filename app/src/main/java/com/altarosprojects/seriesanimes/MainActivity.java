@@ -16,9 +16,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.altarosprojects.seriesanimes.utils.Card;
@@ -42,6 +42,8 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final String TAG = "MainActiviy";
 
     private Boolean signedFace;
     private Boolean signedGoogle;
@@ -85,20 +87,17 @@ public class MainActivity extends AppCompatActivity
 
         initCards();
         //initialize for adapter and recycler
-        if(adapter == null){
-            adapter = new SimpleMaterialAdapter(this, cardArray);
-        }
-
+        adapter = new SimpleMaterialAdapter(this, cardArray);
         recyclerView = (RecyclerView) findViewById(R.id.rcv_reviews_main);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     private void initCards() {
-
-        for(int i = 0; i< 10; i++){
-            Card card = new Card(i, "Titulo: " + i, R.color.colorAccent);
+        cardArray = new ArrayList<>();
+        for(int i = 0; i< 50; i++){
+            Card card = new Card(i, "Titulo: " + i, getResources().getColor(R.color.colorAccent));
             cardArray.add(card);
         }
     }
@@ -109,7 +108,7 @@ public class MainActivity extends AppCompatActivity
     private void obtainExtras() {
         Bundle extras = getIntent().getExtras();
 
-        TextView infoLoggin = (TextView) findViewById(R.id.txt_card_info);
+        /*TextView infoLoggin = (TextView) findViewById(R.id.txt_card_info);*/
 
         if(extras != null){
             signedFace = extras.getBoolean("accountSignedFacebook", false);
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity
                 String email = prefs.getString("facebookEmail", "not found");
                 String userId = prefs.getString("facebookUserId", "not found");
 
-                infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Facebook"));
+                /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Facebook"));*/
             }
             else if(signedGoogle){
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
@@ -134,7 +133,7 @@ public class MainActivity extends AppCompatActivity
                     String personId = acct.getId();
                     Uri personPhoto = acct.getPhotoUrl();
 
-                    infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Google"));
+                    /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Google"));*/
                 }
             }
             else{
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity
                 info = sharedPreferences.getStringSet("appAccountInfo", null);
                 if(info != null){
                     ArrayList<String> infoArray = new ArrayList<>(info);
-                    infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "App Account"));
+                    /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "App Account"));*/
 
                 }
                 else{
