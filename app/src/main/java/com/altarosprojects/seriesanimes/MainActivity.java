@@ -1,6 +1,7 @@
 package com.altarosprojects.seriesanimes;
 
-import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -16,21 +17,14 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.altarosprojects.seriesanimes.utils.Card;
-import com.altarosprojects.seriesanimes.utils.SimpleMaterialAdapter;
 import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.HttpMethod;
@@ -57,7 +51,6 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences sharedPreferences;
 
     private Button btnReviews, btnSeries, btnAnimes;
-    private Fragment fragment;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -91,6 +84,17 @@ public class MainActivity extends AppCompatActivity
         //call this method to obtain extra data from Login Activity
         obtainExtras();
 
+        //set the default fragment to start activity
+        //obtain the instance of Support Fragment Manager
+        FragmentManager defaultFragmentManager = getFragmentManager();
+        //create a new support fragment transaction
+        FragmentTransaction defaultFragmentTransaction = defaultFragmentManager.beginTransaction();
+
+        //create the default fragment that appear when the activity es launch
+        ReviewsFragment defaultFragment = new ReviewsFragment();
+        defaultFragmentTransaction.replace(R.id.conslay_container, defaultFragment);
+        defaultFragmentTransaction.commit();
+
         //references and put listener to three buttons from main menu
         btnReviews = (Button) findViewById(R.id.btn_reviews);
         btnSeries  = (Button) findViewById(R.id.btn_series);
@@ -113,6 +117,16 @@ public class MainActivity extends AppCompatActivity
                 btnAnimes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 btnAnimes.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
 
+                //obtain the instance of Support Fragment Manager
+                FragmentManager fragmentManager = getFragmentManager();
+                //create a new support fragment transaction
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                //create a new fragment for adding to the activity
+                ReviewsFragment reviewsFragment = new ReviewsFragment();
+                fragmentTransaction.replace(R.id.conslay_container, reviewsFragment);
+                fragmentTransaction.commit();
+
             }
         });
 
@@ -128,6 +142,16 @@ public class MainActivity extends AppCompatActivity
                 btnReviews.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
                 btnAnimes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 btnAnimes.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+
+                //obtain the instance of Support Fragment Manager
+                FragmentManager fragmentManager = getFragmentManager();
+                //create a new support fragment transaction
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                //create a new fragment for adding to the activity
+                SeriesFragment seriesFragment = new SeriesFragment();
+                fragmentTransaction.replace(R.id.conslay_container, seriesFragment);
+                fragmentTransaction.commit();
             }
         });
 
@@ -143,6 +167,16 @@ public class MainActivity extends AppCompatActivity
                 btnReviews.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
                 btnSeries.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
                 btnSeries.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+
+                //obtain the instance of Support Fragment Manager
+                FragmentManager fragmentManager = getFragmentManager();
+                //create a new support fragment transaction
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                //create a new fragment for adding to the activity
+                AnimesFragment animesFragment = new AnimesFragment();
+                fragmentTransaction.replace(R.id.conslay_container, animesFragment);
+                fragmentTransaction.commit();
             }
         });
     }
