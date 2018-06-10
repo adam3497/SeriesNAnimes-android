@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.altarosprojects.seriesanimes.utils.Card;
-import com.altarosprojects.seriesanimes.utils.SimpleMaterialAdapter;
+import com.altarosprojects.seriesanimes.utils.CardMain;
+import com.altarosprojects.seriesanimes.utils.MainAdapter;
 
 import java.util.ArrayList;
 
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class ReviewsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private SimpleMaterialAdapter adapter;
-    private ArrayList<Card> cardArray;
+    private MainAdapter adapter;
+    private ArrayList<CardMain> cardMainArray;
 
     public ReviewsFragment() {
         // Required empty public constructor
@@ -39,7 +39,7 @@ public class ReviewsFragment extends Fragment {
         //call this method to initialize the array card and put corresponding data into it.
         initCards();
         //initialize for adapter and recycler
-        adapter = new SimpleMaterialAdapter(getActivity(), cardArray);
+        adapter = new MainAdapter(getActivity(), cardMainArray);
         recyclerView = (RecyclerView) view.findViewById(R.id.rcv_reviews_main);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -49,10 +49,11 @@ public class ReviewsFragment extends Fragment {
     }
 
     private void initCards() {
-        cardArray = new ArrayList<>();
+        cardMainArray = new ArrayList<>();
         for(int i = 0; i< 50; i++){
-            Card card = new Card(i, "Titulo: " + i, getResources().getColor(R.color.colorAccent));
-            cardArray.add(card);
+            CardMain cardMain = new CardMain("brad_pitt.png", "Titulo: " + i, "Descripción " + i, "usuario" + i,
+                    "Anime", "Nombre " + i, "10/06/18");
+            cardMainArray.add(cardMain);
         }
     }
 

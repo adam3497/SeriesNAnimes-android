@@ -45,8 +45,7 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActiviy";
 
-    private Boolean signedFace;
-    private Boolean signedGoogle;
+    private Boolean signedFace, signedGoogle;
     private GoogleSignInClient mGoogleSignInClient;
     private SharedPreferences sharedPreferences;
 
@@ -71,15 +70,9 @@ public class MainActivity extends AppCompatActivity
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        //enable transition between activities (code version)
-        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
 
         //call this method to obtain extra data from Login Activity
         obtainExtras();
@@ -89,7 +82,6 @@ public class MainActivity extends AppCompatActivity
         FragmentManager defaultFragmentManager = getFragmentManager();
         //create a new support fragment transaction
         FragmentTransaction defaultFragmentTransaction = defaultFragmentManager.beginTransaction();
-
         //create the default fragment that appear when the activity es launch
         ReviewsFragment defaultFragment = new ReviewsFragment();
         defaultFragmentTransaction.replace(R.id.conslay_container, defaultFragment);
