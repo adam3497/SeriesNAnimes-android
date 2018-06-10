@@ -4,5 +4,15 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <!--&lt;!&ndash;Enable transitions between activities&ndash;&gt;
+        <item name="android:windowContentTransitions">true</item>
+
+        &lt;!&ndash; In/out states  &ndash;&gt;
+        <item name="android:windowEnterTransition">@transition/explode_transition</item>
+        <item name="android:windowExitTransition">@transition/explode_transition</item>
+
+        &lt;!&ndash; Re-entry/return states &ndash;&gt;
+        <item name="android:windowReenterTransition">@transition/slide_transition</item>
+        <item name="android:windowReturnTransition">@transition/slide_transition</item>-->
     </style>
 </resources>

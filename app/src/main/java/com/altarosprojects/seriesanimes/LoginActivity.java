@@ -1,12 +1,15 @@
 package com.altarosprojects.seriesanimes;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -331,6 +334,7 @@ public class LoginActivity extends AppCompatActivity {
         mainIntent.putExtra("accountSignedFacebook", false);
         sharedPreferences.edit().putBoolean("accountLoggedIn", true).apply();
         startActivity(mainIntent);
+        finish();
     }
 
     /**

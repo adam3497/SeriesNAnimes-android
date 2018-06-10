@@ -1,13 +1,16 @@
 package com.altarosprojects.seriesanimes;
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -19,6 +22,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.altarosprojects.seriesanimes.utils.Card;
@@ -48,14 +54,12 @@ public class MainActivity extends AppCompatActivity
     private Boolean signedFace;
     private Boolean signedGoogle;
     private GoogleSignInClient mGoogleSignInClient;
-    private CallbackManager callbackManager;
     private SharedPreferences sharedPreferences;
 
-    private RecyclerView recyclerView;
-    private SimpleMaterialAdapter adapter;
-    private ArrayList<Card> cardArray;
+    private Button btnReviews, btnSeries, btnAnimes;
+    private Fragment fragment;
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +76,6 @@ public class MainActivity extends AppCompatActivity
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-        callbackManager = CallbackManager.Factory.create();
-
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -83,24 +85,68 @@ public class MainActivity extends AppCompatActivity
         // Build a GoogleSignInClient with the options specified by gso.
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+        //enable transition between activities (code version)
+        //getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
+
+        //call this method to obtain extra data from Login Activity
         obtainExtras();
 
-        initCards();
-        //initialize for adapter and recycler
-        adapter = new SimpleMaterialAdapter(this, cardArray);
-        recyclerView = (RecyclerView) findViewById(R.id.rcv_reviews_main);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        //references and put listener to three buttons from main menu
+        btnReviews = (Button) findViewById(R.id.btn_reviews);
+        btnSeries  = (Button) findViewById(R.id.btn_series);
+        btnAnimes = (Button) findViewById(R.id.btn_animes);
+
+        //set default initial button state
+        btnReviews.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        btnReviews.setTextColor(getResources().getColor(R.color.colorButtonsText));
+
+        btnReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //when this button is press, the another buttons change it's state
+                btnReviews.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                btnReviews.setTextColor(getResources().getColor(R.color.colorButtonsText));
+
+                //set deactivated state
+                btnSeries.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnSeries.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+                btnAnimes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnAnimes.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+
+            }
+        });
+
+        btnSeries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //when this button is press, the another buttons change it's state
+                btnSeries.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                btnSeries.setTextColor(getResources().getColor(R.color.colorButtonsText));
+
+                //set deactivated state
+                btnReviews.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnReviews.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+                btnAnimes.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnAnimes.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+            }
+        });
+
+        btnAnimes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //when this button is press, the another buttons change it's state
+                btnAnimes.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                btnAnimes.setTextColor(getResources().getColor(R.color.colorButtonsText));
+
+                //set deactivated state
+                btnReviews.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnReviews.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+                btnSeries.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+                btnSeries.setTextColor(getResources().getColor(R.color.colorTextButtonsMenuSecondary));
+            }
+        });
     }
 
-    private void initCards() {
-        cardArray = new ArrayList<>();
-        for(int i = 0; i< 50; i++){
-            Card card = new Card(i, "Titulo: " + i, getResources().getColor(R.color.colorAccent));
-            cardArray.add(card);
-        }
-    }
 
     /**
      * This method obtain the extra data from intent launch in LoginActivity to validate which account is in used
@@ -121,7 +167,6 @@ public class MainActivity extends AppCompatActivity
                 String email = prefs.getString("facebookEmail", "not found");
                 String userId = prefs.getString("facebookUserId", "not found");
 
-                /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Facebook"));*/
             }
             else if(signedGoogle){
                 GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
@@ -132,8 +177,6 @@ public class MainActivity extends AppCompatActivity
                     String personEmail = acct.getEmail();
                     String personId = acct.getId();
                     Uri personPhoto = acct.getPhotoUrl();
-
-                    /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "Google"));*/
                 }
             }
             else{
@@ -142,8 +185,6 @@ public class MainActivity extends AppCompatActivity
                 info = sharedPreferences.getStringSet("appAccountInfo", null);
                 if(info != null){
                     ArrayList<String> infoArray = new ArrayList<>(info);
-                    /*infoLoggin.setText(getResources().getString(R.string.signed_with).replace("{0}", "App Account"));*/
-
                 }
                 else{
                     Toast.makeText(this, getResources().getString(R.string.app_account_error), Toast.LENGTH_SHORT).show();

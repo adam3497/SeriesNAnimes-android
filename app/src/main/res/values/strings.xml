@@ -53,4 +53,10 @@
     <!--MainActivity Strings-->
     <string name="main_loggin_out_msg">Cerrando sesión de {0}</string>
     <string name="main_logged_out_successfuly">Sesión cerrada con éxito</string>
+    <string name="main_menu_btn_reviews">Reseñas</string>
+    <string name="main_menu_btn_series">Series</string>
+    <string name="main_menu_btn_animes">Animes</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
