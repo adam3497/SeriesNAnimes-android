@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.altarosprojects.seriesanimes.utils.CardMain;
-import com.altarosprojects.seriesanimes.utils.MainAdapter;
+import com.altarosprojects.seriesanimes.utils.CardReviews;
+import com.altarosprojects.seriesanimes.utils.ReviewsAdapter;
 
 import java.util.ArrayList;
 
@@ -23,8 +23,8 @@ import java.util.ArrayList;
 public class ReviewsFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private MainAdapter adapter;
-    private ArrayList<CardMain> cardMainArray;
+    private ReviewsAdapter adapter;
+    private ArrayList<CardReviews> cardReviewsArray;
 
     public ReviewsFragment() {
         // Required empty public constructor
@@ -39,8 +39,8 @@ public class ReviewsFragment extends Fragment {
         //call this method to initialize the array card and put corresponding data into it.
         initCards();
         //initialize for adapter and recycler
-        adapter = new MainAdapter(getActivity(), cardMainArray);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rcv_reviews_main);
+        adapter = new ReviewsAdapter(getActivity(), cardReviewsArray);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rcv_reviews);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -49,11 +49,11 @@ public class ReviewsFragment extends Fragment {
     }
 
     private void initCards() {
-        cardMainArray = new ArrayList<>();
+        cardReviewsArray = new ArrayList<>();
         for(int i = 0; i< 50; i++){
-            CardMain cardMain = new CardMain("brad_pitt.png", "Titulo: " + i, "Descripción " + i, "usuario" + i,
+            CardReviews cardReviews = new CardReviews("brad_pitt.png", "Titulo: " + i, "Descripción " + i, "usuario" + i,
                     "Anime", "Nombre " + i, "10/06/18");
-            cardMainArray.add(cardMain);
+            cardReviewsArray.add(cardReviews);
         }
     }
 

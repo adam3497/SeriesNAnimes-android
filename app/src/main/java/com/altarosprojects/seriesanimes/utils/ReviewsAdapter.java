@@ -22,16 +22,16 @@ import java.util.ArrayList;
  * Created by labexp on 08/06/18.
  */
 
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
+public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHolder> {
 
     private static final String RAW_IMAGES = "https://raw.githubusercontent.com/adam3497/el_barbero_project/imagenes/service_images/";
 
     private Context context;
-    private ArrayList<CardMain> cardMainArray;
+    private ArrayList<CardReviews> cardReviewsArray;
 
-    public MainAdapter(Context context, ArrayList<CardMain> cardMainArray) {
+    public ReviewsAdapter(Context context, ArrayList<CardReviews> cardReviewsArray) {
         this.context = context;
-        this.cardMainArray = cardMainArray;
+        this.cardReviewsArray = cardReviewsArray;
     }
 
     @NonNull
@@ -45,25 +45,25 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Rect rect = new Rect(holder.sivUserIcon.getLeft(), holder.sivUserIcon.getTop(), holder.sivUserIcon.getRight(), holder.sivUserIcon.getBottom());
-        String finalUrl = RAW_IMAGES + cardMainArray.get(position).getUserIcon();
+        String finalUrl = RAW_IMAGES + cardReviewsArray.get(position).getUserIcon();
         holder.sivUserIcon.setImageUrl(finalUrl, rect);
 
-        holder.txtTitle.setText(cardMainArray.get(position).getTitle());
-        holder.txtDescription.setText(cardMainArray.get(position).getDescription());
-        holder.txtUsername.setText(cardMainArray.get(position).getUsername());
-        holder.txtType.setText(context.getResources().getString(R.string.main_cardview_type).replace("{0}", cardMainArray.get(position).getType()));
-        holder.txtName.setText(context.getResources().getString(R.string.main_cardview_name).replace("{0}", cardMainArray.get(position).getName()));
-        holder.txtPublicationDate.setText(context.getResources().getString(R.string.main_cardview_publication_date).replace("{0}",
-                cardMainArray.get(position).getPublicationDate()));
+        holder.txtTitle.setText(cardReviewsArray.get(position).getTitle());
+        holder.txtDescription.setText(cardReviewsArray.get(position).getDescription());
+        holder.txtUsername.setText(cardReviewsArray.get(position).getUsername());
+        holder.txtType.setText(context.getResources().getString(R.string.reviews_cardview_type).replace("{0}", cardReviewsArray.get(position).getType()));
+        holder.txtName.setText(context.getResources().getString(R.string.reviews_cardview_name).replace("{0}", cardReviewsArray.get(position).getName()));
+        holder.txtPublicationDate.setText(context.getResources().getString(R.string.reviews_cardview_publication_date).replace("{0}",
+                cardReviewsArray.get(position).getPublicationDate()));
     }
 
     @Override
     public int getItemCount() {
-        if(cardMainArray.isEmpty()){
+        if(cardReviewsArray.isEmpty()){
             return 0;
         }
         else{
-            return cardMainArray.size();
+            return cardReviewsArray.size();
         }
     }
 
@@ -73,20 +73,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     //inner class that initialize all the view
-    public static  class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView txtTitle, txtDescription, txtUsername, txtType, txtName, txtPublicationDate;
         private SmartImageView sivUserIcon;
 
         private ViewHolder(View view) {
             super(view);
-            txtTitle = (TextView) view.findViewById(R.id.txt_maincard_titile);
-            txtDescription = (TextView) view.findViewById(R.id.txt_maincard_preview_description);
-            txtUsername = (TextView) view.findViewById(R.id.txt_maincard_username);
-            txtType = (TextView) view.findViewById(R.id.txt_maincard_type);
-            txtName = (TextView) view.findViewById(R.id.txt_maincard_name);
-            txtPublicationDate = (TextView) view.findViewById(R.id.txt_maincard_publication_date);
-            sivUserIcon = (SmartImageView) view.findViewById(R.id.siv_maincard_user_icon);
+            txtTitle = (TextView) view.findViewById(R.id.txt_reviewscard_titile);
+            txtDescription = (TextView) view.findViewById(R.id.txt_reviewscard_preview_description);
+            txtUsername = (TextView) view.findViewById(R.id.txt_reviewscard_username);
+            txtType = (TextView) view.findViewById(R.id.txt_reviewscard_type);
+            txtName = (TextView) view.findViewById(R.id.txt_reviewscard_name);
+            txtPublicationDate = (TextView) view.findViewById(R.id.txt_reviewscard_publication_date);
+            sivUserIcon = (SmartImageView) view.findViewById(R.id.siv_reviewscard_user_icon);
 
         }
     }

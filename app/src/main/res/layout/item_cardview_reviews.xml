@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/lyout_cardview"
+    android:id="@+id/cardview_reviews"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
@@ -18,19 +18,19 @@
         android:layout_height="match_parent">
 
         <com.github.snowdream.android.widget.SmartImageView
-            android:id="@+id/siv_maincard_user_icon"
+            android:id="@+id/siv_reviewscard_user_icon"
             android:layout_width="51dp"
             android:layout_height="46dp"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:contentDescription="@string/main_cardview_usericon_description"
+            android:contentDescription="@string/reviews_cardview_usericon_description"
             android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_maincard_titile"
+            android:id="@+id/txt_reviewscard_titile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -42,13 +42,13 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:maxLines="1"
-            android:text="@string/main_cardview_title"
+            android:text="@string/reviews_cardview_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_maincard_preview_description"
+            android:id="@+id/txt_reviewscard_preview_description"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_marginBottom="2dp"
@@ -59,16 +59,16 @@
             android:layout_marginTop="8dp"
             android:gravity="start"
             android:maxLines="4"
-            android:text="@string/main_cardview_preview_description"
+            android:text="@string/reviews_cardview_preview_description"
             android:textSize="14sp"
             android:textStyle="italic"
-            app:layout_constraintBottom_toTopOf="@+id/txt_maincard_username"
+            app:layout_constraintBottom_toTopOf="@+id/txt_reviewscard_username"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/txt_maincard_titile" />
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/txt_reviewscard_titile" />
 
         <TextView
-            android:id="@+id/txt_maincard_username"
+            android:id="@+id/txt_reviewscard_username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -78,15 +78,15 @@
             android:layout_marginTop="8dp"
             android:gravity="start"
             android:maxLines="1"
-            android:text="@string/main_cardview_username_unknown"
+            android:text="@string/reviews_cardview_username_unknown"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/txt_maincard_preview_description" />
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/txt_reviewscard_preview_description" />
 
         <TextView
-            android:id="@+id/txt_maincard_type"
+            android:id="@+id/txt_reviewscard_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -95,16 +95,16 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
             android:gravity="start"
-            android:text="@string/main_cardview_type"
+            android:text="@string/reviews_cardview_type"
             android:textSize="12sp"
             android:textStyle="bold"
             android:maxLines="1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/txt_maincard_username" />
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/txt_reviewscard_username" />
 
         <TextView
-            android:id="@+id/txt_maincard_name"
+            android:id="@+id/txt_reviewscard_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -114,15 +114,15 @@
             android:layout_marginTop="2dp"
             android:gravity="start"
             android:maxLines="1"
-            android:text="@string/main_cardview_name"
+            android:text="@string/reviews_cardview_name"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/txt_maincard_type" />
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/txt_reviewscard_type" />
 
         <TextView
-            android:id="@+id/txt_maincard_publication_date"
+            android:id="@+id/txt_reviewscard_publication_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
@@ -134,11 +134,11 @@
             android:gravity="start"
             android:textStyle="bold"
             android:textSize="12sp"
-            android:text="@string/main_cardview_publication_date"
+            android:text="@string/reviews_cardview_publication_date"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/siv_maincard_user_icon"
-            app:layout_constraintTop_toBottomOf="@+id/txt_maincard_name" />
+            app:layout_constraintStart_toEndOf="@+id/siv_reviewscard_user_icon"
+            app:layout_constraintTop_toBottomOf="@+id/txt_reviewscard_name" />
 
 
     </android.support.constraint.ConstraintLayout>

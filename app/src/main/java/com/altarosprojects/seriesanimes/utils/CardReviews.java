@@ -4,7 +4,7 @@ package com.altarosprojects.seriesanimes.utils;
  * Created by labexp on 08/06/18.
  */
 
-public class CardMain {
+public class CardReviews {
     private String userIcon;
     private String title;
     private String description;
@@ -13,7 +13,7 @@ public class CardMain {
     private String name;
     private String publicationDate;
 
-    public CardMain(String userIcon, String title, String description, String username, String type, String name, String publicationDate){
+    public CardReviews(String userIcon, String title, String description, String username, String type, String name, String publicationDate){
         this.userIcon = userIcon;
         this.title = title;
         this.description = description;
