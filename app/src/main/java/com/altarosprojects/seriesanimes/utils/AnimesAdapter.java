@@ -19,38 +19,37 @@ import com.github.snowdream.android.widget.SmartImageView;
 
 import java.util.ArrayList;
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder> {
+public class AnimesAdapter extends RecyclerView.Adapter<AnimesAdapter.ViewHolder> {
 
-    private static final String RAW_SERIES_IMAGES = "https://raw.githubusercontent.com/adam3497/el_barbero_project/imagenes/service_images/";
+    private static final String RAW_ANIMES_IMAGES = "https://raw.githubusercontent.com/adam3497/el_barbero_project/imagenes/service_images/";
 
     private Context context;
-    private ArrayList<CardSeries> cardSeriesArray;
+    private ArrayList<CardAnimes> animesArray;
 
-    public SeriesAdapter(Context context, ArrayList<CardSeries> cardSeriesArray){
+    public AnimesAdapter(Context context, ArrayList<CardAnimes> animesArray){
         this.context = context;
-        this.cardSeriesArray = cardSeriesArray;
+        this.animesArray = animesArray;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_cardview_series, parent, false);
+        View view = inflater.inflate(R.layout.item_cardview_animes, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Rect rect = new Rect(holder.sivSerieImage.getLeft(), holder.sivSerieImage.getTop(), holder.sivSerieImage.getRight(),
-                holder.sivSerieImage.getBottom());
-        String finalUrl = RAW_SERIES_IMAGES + cardSeriesArray.get(position).getSerieImage();
-        holder.sivSerieImage.setImageUrl(finalUrl, rect);
+        Rect rect = new Rect(holder.sivAnimeImage.getLeft(), holder.sivAnimeImage.getTop(), holder.sivAnimeImage.getRight(),
+                holder.sivAnimeImage.getBottom());
+        String finalUrl = RAW_ANIMES_IMAGES + animesArray.get(position).getAnimeImage();
+        holder.sivAnimeImage.setImageUrl(finalUrl, rect);
+        holder.txtTitle.setText(animesArray.get(position).getTitle());
+        holder.txtDescription.setText(animesArray.get(position).getDescription());
 
-        holder.txtTitlte.setText(cardSeriesArray.get(position).getTitle());
-        holder.txtDescription.setText(cardSeriesArray.get(position).getDescription());
-
-        boolean currentState = cardSeriesArray.get(position).getSaved();
-        if(currentState){
+        boolean isSaved = animesArray.get(position).isSaved();
+        if(isSaved){
             holder.ivState.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_turned_in));
         }
         else{
@@ -62,15 +61,16 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         holder.ivThirdStart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_fill_start));
         holder.ivFourthStart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_half_start));
         holder.ivFifthStart.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_empty_start));
+
     }
 
     @Override
     public int getItemCount() {
-        if(cardSeriesArray.isEmpty()){
+        if(animesArray.isEmpty()){
             return 0;
         }
         else{
-            return cardSeriesArray.size();
+            return animesArray.size();
         }
     }
 
@@ -79,27 +79,23 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.ViewHolder
         return position;
     }
 
-    /**
-     * In this class we create and reference all the views in item_cardview_series.xml
-     */
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtTitlte, txtDescription;
-        private SmartImageView sivSerieImage;
+        private TextView txtTitle, txtDescription;
+        private SmartImageView sivAnimeImage;
         private ImageView ivState, ivFirstStart, ivSecondStart, ivThirdStart, ivFourthStart, ivFifthStart;
 
-        private ViewHolder(View view) {
+        public ViewHolder(View view) {
             super(view);
-            txtTitlte = (TextView) view.findViewById(R.id.txt_seriescard_title);
-            txtDescription = (TextView) view.findViewById(R.id.txt_seriescard_description);
-            sivSerieImage = (SmartImageView) view.findViewById(R.id.siv_seriescard_serie_image);
-            ivState = (ImageView) view.findViewById(R.id.iv_seriescard_save_state);
-            ivFirstStart = (ImageView) view.findViewById(R.id.iv_seriescard_first_start);
-            ivSecondStart = (ImageView) view.findViewById(R.id.iv_seriescard_second_start);
-            ivThirdStart = (ImageView) view.findViewById(R.id.iv_seriescard_third_start);
-            ivFourthStart = (ImageView) view.findViewById(R.id.iv_seriescard_fourth_start);
-            ivFifthStart = (ImageView) view.findViewById(R.id.iv_seriescard_fifth_start);
-
+            txtTitle = (TextView) view.findViewById(R.id.txt_animescard_title);
+            txtDescription = (TextView) view.findViewById(R.id.txt_animescard_description);
+            sivAnimeImage = (SmartImageView) view.findViewById(R.id.siv_animescard_anime_image);
+            ivState = (ImageView) view.findViewById(R.id.iv_animescard_save_state);
+            ivFirstStart = (ImageView) view.findViewById(R.id.iv_animescard_first_start);
+            ivSecondStart = (ImageView) view.findViewById(R.id.iv_animescard_second_start);
+            ivThirdStart = (ImageView) view.findViewById(R.id.iv_animescard_third_start);
+            ivFourthStart = (ImageView) view.findViewById(R.id.iv_animescard_fourth_start);
+            ivFifthStart = (ImageView) view.findViewById(R.id.iv_animescard_fifth_start);
         }
     }
 

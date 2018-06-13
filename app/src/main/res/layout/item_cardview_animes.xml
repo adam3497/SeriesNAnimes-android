@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.snowdream.android.widget.SmartImageView
+            android:id="@+id/siv_animescard_anime_image"
+            android:layout_width="70dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/animes_cardview_animes_image_description"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_animescard_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="1"
+            android:gravity="start"
+            android:text="@string/animes_cardview_title"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/iv_animescard_save_state"
+            app:layout_constraintStart_toEndOf="@+id/siv_animescard_anime_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_animescard_description"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:maxLines="3"
+            android:gravity="start"
+            android:text="@string/animes_cardview_description"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/siv_animescard_anime_image"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_title" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_save_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt_animescard_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_turned_in_not" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_third_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintStart_toEndOf="@+id/iv_animescard_second_start"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_description"
+            app:srcCompat="@drawable/ic_empty_start" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_fourth_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintStart_toEndOf="@+id/iv_animescard_third_start"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_description"
+            app:srcCompat="@drawable/ic_empty_start" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_second_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintStart_toEndOf="@+id/iv_animescard_first_start"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_description"
+            app:srcCompat="@drawable/ic_empty_start" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_fifth_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintStart_toEndOf="@+id/iv_animescard_fourth_start"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_description"
+            app:srcCompat="@drawable/ic_empty_start" />
+
+        <ImageView
+            android:id="@+id/iv_animescard_first_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/animes_cardview_start_description"
+            app:layout_constraintStart_toEndOf="@+id/siv_animescard_anime_image"
+            app:layout_constraintTop_toBottomOf="@+id/txt_animescard_description"
+            app:srcCompat="@drawable/ic_empty_start" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

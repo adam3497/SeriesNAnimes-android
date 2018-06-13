@@ -72,6 +72,13 @@
     <string name="series_cardview_description">Descripción</string>
     <string name="series_cardview_start_description">Puntuación de los usuarios</string>
 
+    <!--Animes CardView string-->
+    <string name="animes_cardview_animes_image_description">Imagen de animes</string>
+    <string name="animes_cardview_title">Título</string>
+    <string name="animes_cardview_description">Descrićión</string>
+    <string name="animes_cardview_start_description">Puntuación de los usuarios</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
