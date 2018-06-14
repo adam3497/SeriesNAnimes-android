@@ -78,6 +78,15 @@
     <string name="animes_cardview_description">Descrićión</string>
     <string name="animes_cardview_start_description">Puntuación de los usuarios</string>
 
+    <!--Reviews Activity strings-->
+    <string name="title_activity_review_main">Reseña</string>
+    <string name="reviews_activity_publish_by">Publicado por: {0}</string>
+    <string name="reviews_activity_content_example">Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo
+    Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo
+    Esto es un texto de ejemplo Esto es un texto de ejemplo Esto es un texto de ejemplo</string>
+    <string name="reviews_activity_like_description">Indicar que te gusta la reseña</string>
+    <string name="reviews_activity_dislike_description">Indicar que no te gusta la reseña</string>
+    <string name="reviews_activity_make_comment">Comentar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
