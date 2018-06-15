@@ -92,5 +92,9 @@
     <string name="comment_cardview_username">Desconocido</string>
     <string name="comment_cardview_comment_example">Esto es un comentario Esto es un comentario Esto es un comentario Esto es un comentario Esto es un comentario
     Esto es un comentario Esto es un comentario Esto es un comentario</string>
+    <string name="title_activity_show_comments">ShowComments</string>
+    <string name="comment_activity_writte_comment">Escribir comentario…</string>
+    <string name="comment_activity_btn_comment">Comentar</string>
+    <string name="comment_count">{0} comentarios</string>
 
 </resources>

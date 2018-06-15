@@ -1,6 +1,7 @@
 package com.altarosprojects.seriesanimes.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.altarosprojects.seriesanimes.R;
+import com.altarosprojects.seriesanimes.activity.ShowComments;
 import com.github.snowdream.android.widget.SmartImageView;
 
 import java.util.ArrayList;

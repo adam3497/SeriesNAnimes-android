@@ -18,6 +18,7 @@ public class CardComment {
         this.userProfilePhoto = userProfilePhoto;
         this.isLikeActive = isLikeActive;
         this.isDislikeActive = isDislikeActive;
+
     }
 
 
@@ -48,4 +49,5 @@ public class CardComment {
     public boolean isDislikeActive() {
         return isDislikeActive;
     }
+
 }

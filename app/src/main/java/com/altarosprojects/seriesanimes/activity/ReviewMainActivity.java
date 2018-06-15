@@ -14,7 +14,7 @@ import com.github.snowdream.android.widget.SmartImageView;
 
 public class ReviewMainActivity extends AppCompatActivity {
 
-    private TextView txtContent, txtTitle, txtPublishBy, txtPublicationDate, txtLikeCount, txtDislikeCount;
+    private TextView txtContent, txtTitle, txtPublishBy, txtPublicationDate, txtLikeCount, txtDislikeCount, txtCommentCount;
     private SmartImageView sivReviewImageContent;
     private ImageButton ibtnLike, ibtnDislike;
     private Button btnMakeComment;
@@ -40,6 +40,7 @@ public class ReviewMainActivity extends AppCompatActivity {
         txtPublicationDate = (TextView) findViewById(R.id.txt_review_date);
         txtLikeCount = (TextView) findViewById(R.id.txt_review_like_count);
         txtDislikeCount = (TextView) findViewById(R.id.txt_review_dislike_count);
+        txtCommentCount = (TextView) findViewById(R.id.txt_review_comment_count);
         sivReviewImageContent = (SmartImageView) findViewById(R.id.siv_review_content_image);
         ibtnDislike = (ImageButton) findViewById(R.id.ibtn_dislike_review);
         ibtnLike = (ImageButton) findViewById(R.id.ibtn_like_review);
@@ -125,6 +126,14 @@ public class ReviewMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        txtCommentCount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent commentsIntent = new Intent(ReviewMainActivity.this, ShowComments.class);
+                startActivity(commentsIntent);
             }
         });
     }
