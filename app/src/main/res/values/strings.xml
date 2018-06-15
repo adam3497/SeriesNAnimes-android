@@ -88,6 +88,9 @@
     <string name="reviews_activity_dislike_description">Indicar que no te gusta la reseña</string>
     <string name="reviews_activity_make_comment">Comentar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--Comment CardView strings-->
+    <string name="comment_cardview_username">Desconocido</string>
+    <string name="comment_cardview_comment_example">Esto es un comentario Esto es un comentario Esto es un comentario Esto es un comentario Esto es un comentario
+    Esto es un comentario Esto es un comentario Esto es un comentario</string>
+
 </resources>
