@@ -1,4 +1,4 @@
-package com.altarosprojects.seriesanimes;
+package com.altarosprojects.seriesanimes.activity;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -24,6 +24,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.altarosprojects.seriesanimes.R;
+import com.altarosprojects.seriesanimes.fragments.AnimesFragment;
+import com.altarosprojects.seriesanimes.fragments.ReviewsFragment;
+import com.altarosprojects.seriesanimes.fragments.SeriesFragment;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;

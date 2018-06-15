@@ -1,18 +1,15 @@
-package com.altarosprojects.seriesanimes;
+package com.altarosprojects.seriesanimes.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.text.method.TransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.altarosprojects.seriesanimes.R;
 import com.github.snowdream.android.widget.SmartImageView;
 
 public class ReviewMainActivity extends AppCompatActivity {

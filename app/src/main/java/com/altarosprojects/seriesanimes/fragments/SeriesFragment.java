@@ -1,4 +1,4 @@
-package com.altarosprojects.seriesanimes;
+package com.altarosprojects.seriesanimes.fragments;
 
 
 import android.os.Bundle;
@@ -10,8 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.altarosprojects.seriesanimes.utils.AnimesAdapter;
-import com.altarosprojects.seriesanimes.utils.CardAnimes;
+import com.altarosprojects.seriesanimes.R;
+import com.altarosprojects.seriesanimes.utils.CardSeries;
+import com.altarosprojects.seriesanimes.utils.SeriesAdapter;
 
 import java.util.ArrayList;
 
@@ -19,13 +20,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AnimesFragment extends Fragment {
+public class SeriesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private AnimesAdapter adapter;
-    private ArrayList<CardAnimes> animesArray;
+    private SeriesAdapter adapter;
+    private ArrayList<CardSeries> cardSeriesArray;
 
-    public AnimesFragment() {
+    public SeriesFragment() {
         // Required empty public constructor
     }
 
@@ -34,13 +35,13 @@ public class AnimesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_animes, container, false);
+        View view = inflater.inflate(R.layout.fragment_series, container, false);
 
         //call this method to initialize the array card and put corresponding data into it.
         initCards();
-
-        adapter = new AnimesAdapter(getActivity(), animesArray);
-        recyclerView = (RecyclerView) view.findViewById(R.id.rcv_animes);
+        //initialize for adapter and recycler
+        adapter = new SeriesAdapter(getActivity(), cardSeriesArray);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rcv_series);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -49,12 +50,11 @@ public class AnimesFragment extends Fragment {
     }
 
     private void initCards() {
-        animesArray = new ArrayList<>();
-        for(int i = 0; i < 50; i++){
-            CardAnimes animes = new CardAnimes(getResources().getString(R.string.animes_cardview_title) + ": " + i,
-                    getResources().getString(R.string.animes_cardview_description) + " " + i,
-                    "brad_pitt.png", 123, true);
-            animesArray.add(animes);
+        cardSeriesArray = new ArrayList<>();
+        for(int i = 0; i < 40; i++){
+            CardSeries cardSeries = new CardSeries("Título " + i, "Descrpción " + i, "brad_pitt.png", 123,
+                    true);
+            cardSeriesArray.add(cardSeries);
         }
     }
 
