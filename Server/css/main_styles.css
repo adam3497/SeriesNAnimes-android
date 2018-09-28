@@ -7,7 +7,6 @@ header {
 	display: flex;
 	height: 100px;
 	font-family: Gotham SSm A,Gotham SSm B,Helvetica,Arial,sans-serif;
-	color: #afb1b3;
 
 }
 
@@ -16,11 +15,46 @@ header div{
 }
 
 .LogoHeader {
-	background-color: #343434;
+	background-color: #161616;
 	width: 30px;
 }
 
 .OptionsHeader {
-	background-color: #343434;
+	background-color: #161616;
+
+}
+
+.NavOptions {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    padding: 30px 0 0 0;
+}
+
+.NavLinkItem {
+    position: relative;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-weight: 400;
+    text-decoration: none;
+    font-size: 18px;
+    color: #afb1b3;
+    padding: 0 15px;
+    min-width: 50px;
+    width: 50px;
+    outline: none;
+    transition: color 0ms;
+}
+
+.NavLinkItem:hover{
+    color: #ffffff;
+
+
 
 }
