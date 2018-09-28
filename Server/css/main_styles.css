@@ -1,0 +1,26 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	display: flex;
+	height: 100px;
+	font-family: Gotham SSm A,Gotham SSm B,Helvetica,Arial,sans-serif;
+	color: #afb1b3;
+
+}
+
+header div{
+	flex: auto;
+}
+
+.LogoHeader {
+	background-color: #343434;
+	width: 30px;
+}
+
+.OptionsHeader {
+	background-color: #343434;
+
+}
