@@ -109,7 +109,7 @@ CREATE TABLE serie_category
 (
   category_id integer REFERENCES categories(category_id) on DELETE set null on UPDATE CASCADE,
   serie_id integer REFERENCES animes(anime_id)on DELETE set null on UPDATE CASCADE,
-  PRIMARY KEY (category_id, serie_id
+  PRIMARY KEY (category_id, serie_id)
 );
 
 CREATE TABLE serie_review
