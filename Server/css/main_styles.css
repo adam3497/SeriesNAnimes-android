@@ -56,31 +56,35 @@ header div{
     color: #ffffff;
 }
 
+/* Styles for the body main, here are the Welcome Tittle and the user note card with some information of the server*/
 .BodyMain {
     background: url("../images/main_page_header_background.jpg");
-    background-position: 0 -25em;
-    height: 500px;
+    background-position: 0 -25em; /*To move the image to center*/
+    height: 550px;
 }
 
+
+/*Here are the syles for the Welcome tittle*/
 .WelcomeMessage {
     background-color: rgba(24, 24, 24, 0.63);
     display: flex;
-    height: 500px;
+    height: 550px;
 }
 
 .WelcomeMessage div {
-    flex: auto;
+    flex: auto; /*To put the welcome tittle and the card message together*/
 }
 
+/*The front of the tittle, is like the most near aspect that we need to edit and maintain the background intact*/
 .WelcomeMessageFront {
     height: 700px;
     width: 250px;
 }
 
 .WelcomeMessageFront p {
-    font-weight: 400;
+    font-weight: 700;
     padding: 30px 0 0 40px;
-    font-size: 22px;
+    font-size: 18px;
     margin-bottom: 20px;
     color: #afb1b3;
 }
@@ -94,11 +98,11 @@ header div{
     color: #fff;
 }
 
-
+/*Styles for the card message, with the blue image and the information text of the server*/
 .CardMessage {
     background: url("../images/card_main_message_background.jpg") no-repeat;
     background-position: center;
-    background-size: cover;
+    background-size: cover; /*To put the image in all the card message*/
     width: 100px;
     height: 255px;
     margin-top: 400px;
@@ -114,12 +118,112 @@ header div{
     font-size: 24px;
     text-align: center;
     padding-top: 15px;
+    font-weight: 700;
 }
 
 .CardMesageData {
     padding: 20px;
     text-align: justify;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 16px;
+    font-weight: 700;
     color: #fff;
 }
+
+/*Styles for the footer*/
+
+footer {
+    margin-top: 350px;
+    background-color: #3b3e43;
+    height: 250px;
+    display: flex;
+}
+
+footer div {
+    flex: auto;
+}
+
+/*Style for footer logo*/
+
+.LogoFooter {
+    width: 50px;
+}
+
+/*Styles for about information*/
+.AboutFooter {
+    padding: 10px;
+    margin-top: 30px;
+}
+
+/*Style for the tittle*/
+.AboutFooterTittle {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #f0f0f0;
+}
+
+/*Styles for each item*/
+.AboutFooterInformation {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.AboutFooterItemInformation {
+    padding: 10px;
+    color: #7d8186;
+    font-weight: 700;
+}
+
+/*Styles for the contact information*/
+.ContactInformationFooter {
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.ContactTittle {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #f0f0f0;
+}
+
+.DeveloperContacts {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    padding: 30px 0 0 0;
+}
+
+.NavContactFooterItem {
+    font-weight: 700;
+    margin: 5px;
+    padding: 0;
+    text-decoration: none;
+    height: 30px;
+    width: 30px;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.NavContactFooterItem img {
+    height: 30px;
+    width: 30px;
+
+}
+
+.NavContactFooterItem:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}
+
+.ContactEmail {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    color: #ffffff;
+}
+
+.ContactEmail img {
+    height: 30px;
+    width: 30px;
+}
+
