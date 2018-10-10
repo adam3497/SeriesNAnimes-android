@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.BodyLogin {
+    display: flex;
+}
+
+.BodyLogin div {
+    flex: auto;
+}
+
+.AdviceSec {
+    margin-top: 90px;
+    margin-left: 80px;
+    padding: 20px;
+}
+
+.RowSec {
+    margin-bottom: 40px;
+}
+
+.RowSec h2 {
+    color: #4b4b4b;
+    font-size: 20px;
+    line-height: 1.65;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+.RowSec img {
+    width: 50px;
+    height: 50px;
+    -webkit-filter: opacity(55%);
+    filter: opacity(55%);
+}
+
+.LoginForm {
+    margin-top: 100px;
+    background: #f5f5f5;
+    width: 300px;
+    height: 200px;
+    margin-right: 150px;
+    padding: 20px;
+}
+
+.LoginForm h4 {
+    color: #4b4b4b;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.65;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.LoginFormInputs {
+    padding: 10px;
+}
+
+.LoginFormInputs input {
+    width: 90%;
+    height: 30px;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.LoginForm:hover {
+    -webkit-box-shadow: 0 0 6px 3px #caedff;
+    -moz-box-shadow: 0 0 6px 3px #caedff;
+    box-shadow: 0 0 6px 3px #caedff;
+    outline: 1px solid #97dbff;
+}
+
+.LoginFormInputs input:focus {
+    outline: 2px solid #97dbff;
+}
+
+.LoginFormSendButton {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.LoginFormSendButton button {
+    padding: 8px 20px;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    border: 0;
+    border-radius: 20px;
+    background: #00a6fd;
+    color: #fff;
+}
+
+.LoginFormSendButton button:hover {
+    background: #007cbd;
+    cursor:pointer;
+}
+
+.LoginFormSendButton button:active {
+    background: #00a6fd;
+}
+
+.FooterLogin {
+    margin-top: 100px;
+}
+
+.FooterLoginContainer {
+    display: flex;
+}
+
+.FooterLoginContainer div {
+    flex: 100px 300px;
+}
+
+.LoginCopyrights {
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.LoginCopyrights p {
+    font-size: 16px;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+}
+
+.LoginDeveloperContacts {
+    -webkit-justify-content: center;
+    justify-content: center;
+    -ms-flex-pack: center;
+    margin-left: 10px;
+}
+
+.LoginNavContactFooterItem {
+    font-weight: 700;
+    margin: 5px;
+    padding: 0;
+    text-decoration: none;
+    height: 30px;
+    width: 30px;
+    -webkit-filter: grayscale(1);
+    filter: grayscale(1);
+}
+
+.LoginNavContactFooterItem img {
+    height: 30px;
+    width: 30px;
+}
+
+.LoginNavContactFooterItem:hover {
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+}

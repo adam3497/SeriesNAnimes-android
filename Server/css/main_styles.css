@@ -6,7 +6,7 @@
 
 header {
 	display: flex;
-	height: 100px;
+	height: 110px;
 
 }
 
@@ -17,6 +17,16 @@ header div{
 .LogoHeader {
 	background-color: #161616;
 	width: 30px;
+}
+
+.LogoHeader img{
+    height: 90px;
+    width: 130px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 10px;
 }
 
 .OptionsHeader {
@@ -131,14 +141,14 @@ header div{
 
 /*Styles for the footer*/
 
-footer {
+.FooterMain {
     margin-top: 350px;
     background-color: #3b3e43;
     height: 250px;
     display: flex;
 }
 
-footer div {
+.FooterMain div {
     flex: auto;
 }
 
