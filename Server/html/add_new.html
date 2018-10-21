@@ -2,9 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Agregar | S&amp;A</title>
+
+    <style>
+        #AjaxTest {
+            width: 400px;
+            padding: 30px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <script src="../scripts/jquery-3.2.1.js"></script>
+    <script src="../scripts/test_ajax.js"></script>
 </head>
 <body>
 
+    <h2>¿Que deseas agregar?</h2>
+
+    <form action="../php/EntryTransactions.php"method="post">
+        <div class="AddFormRows">
+            <label>
+                <select name="SelectTable" id="SelectTable">
+                    <option value="initial" selected>Eliga una tabla</option>
+                    <option value="anime">Anime</option>
+                    <option value="serie">Serie</option>
+                    <option value="category">Categoria</option>
+                    <option value="user">Usuario</option>
+                </select>
+            </label>
+        </div>
+    </form>
+
+    <div id="AjaxTest">
+
+    </div>
 </body>
 </html>

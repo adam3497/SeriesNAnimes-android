@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="../css/main_styles.css">
     <link rel="stylesheet" href="../css/login_styles.css">
 
+    <script src="../scripts/jquery-3.2.1.js"></script>
+    <script src="../scripts/login_script.js"></script>
+
 </head>
 <body>
     <header>
@@ -14,7 +17,7 @@
         </div>
     </header>
 
-    <div class="BodyLogin">
+    <div class="BodyLogin" id="BodyLogin">
 
         <div class="AdviceSec">
             <div class="RowSec">
@@ -39,15 +42,19 @@
 
         <div class="LoginForm">
             <h4>Inicia sesión con una cuenta existente</h4>
-            <form action="http://localhost/Server/html/index.html" method="post">
+            <form action="index.html" method="post" id="FormLogin">
+                <label>
+                    <input type="text" name="action" value="login" id="action">
+                </label>
                 <div class="LoginFormInputs">
-                    <input type="text" id="username" name="username" placeholder="Nombre de usuario">
+                    <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
                 </div>
                 <div class="LoginFormInputs">
-                    <input type="password" id="password" name="password" placeholder="Contraseña">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 </div>
                 <div class="LoginFormSendButton">
                     <button id="btnLogin" type="submit">Ingresar</button>
+                    <p id="response"></p>
                 </div>
             </form>
         </div>
