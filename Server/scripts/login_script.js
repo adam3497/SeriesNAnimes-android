@@ -1,6 +1,8 @@
 $(document).ready(function () {
     //hide the actions in the form, is only for server requests
-   $("#action").hide();
+    $("#action").hide();
+    $("#Preloader").hide();
+
    $("#username").focus(function () {
       $("#response").text("");
    });
@@ -9,6 +11,7 @@ $(document).ready(function () {
     });
 
     $("#FormLogin").submit(function () {
+        $("#Preloader").show();
         //data to send to the server
         var formData = {
             action:$("#action").val(),
@@ -22,6 +25,7 @@ $(document).ready(function () {
     });
 
     function manageResponse(response) {
+        $("#Preloader").hide();
         if(response === "userOk"){
             $("#response").text("Usuario correcto");
             window.location.href = "../html/index.html";
