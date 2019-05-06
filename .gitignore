@@ -10,3 +10,4 @@
 /captures
 .externalNativeBuild
 /Sprint
+/Server/php/db/DatabaseCredentials.php
